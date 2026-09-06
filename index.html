@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asterion Benchmark V2 White Paper</title>
+  <meta
+    name="description"
+    content="Publication page for the Asterion Benchmark V2 white paper on the Productive Value-Productive Power (PV-PP) framework."
+  />
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --text: #202020;
+      --muted: #555555;
+      --line: #181818;
+      --accent: #111111;
+      --accent-2: #6a6a6a;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 22px 64px;
+    }
+
+    .eyebrow {
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      max-width: 900px;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 820px;
+      margin-bottom: 28px;
+    }
+
+    .rule {
+      border-top: 4px solid var(--line);
+      margin: 28px 0;
+    }
+
+    .card {
+      background: var(--card);
+      border-top: 4px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 22px 0;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.55rem;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: var(--accent);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .btn.secondary {
+      background: var(--accent-2);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      background: #f7f7f7;
+      border: 1px solid #dddddd;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.55rem;
+      margin-bottom: 2px;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+    }
+
+    .note {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 38px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid #cfcfcf;
+      padding-top: 18px;
+    }
+
+    code {
+      background: #ececec;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="eyebrow">PV-PP Research • Benchmark White Paper</div>
+    <h1>Productive Value-Productive Power in a Dynamic Multi-Agent Productive System</h1>
+    <div class="subtitle">
+      The Asterion Benchmark V2 — a 7,000-run stochastic benchmark comparing the frozen
+      Productive Value-Productive Power (PV-PP) decision architecture with scalar and
+      deterministic comparison controllers.
+    </div>
+
+    <div class="buttons">
+      <!-- Replace the href below with the GitHub repository URL for the white paper. -->
+      <a class="btn" href="REPOSITORY_URL_HERE">Go to Repository</a>
+
+      <!-- Optional: replace with a direct PDF or DOCX link after uploading the paper. -->
+      <a class="btn secondary" href="WHITE_PAPER_FILE_URL_HERE">Download White Paper</a>
+    </div>
+
+    <div class="rule"></div>
+
+    <section class="card">
+      <h2>About the White Paper</h2>
+      <p>
+        This paper reports the primary results of Asterion Benchmark V2, an internally
+        constructed stress benchmark designed to exercise a large portion of the frozen
+        PV-PP architecture simultaneously.
+      </p>
+      <p>
+        The benchmark models a tightly coupled productive system containing a manufacturer,
+        suppliers, a customer, a lender, logistics, inventories, contracts, financing
+        constraints, supplier deterioration and recovery, quality failures, alternate
+        productive capacity, delayed field consequences, incomplete information, and
+        persistent productive-power states.
+      </p>
+      <p>
+        The governing question is whether PV-PP can maintain coherent productive-system
+        behavior under dynamic multi-agent stress, and how that behavior differs from
+        specified competent comparison controllers operating over the same world,
+        information boundary, action surface, and stochastic conditions.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>The M14 Primary Ensemble</h2>
+      <div class="metrics">
+        <div class="metric">
+          <strong>1,000</strong>
+          common stochastic worlds
+        </div>
+        <div class="metric">
+          <strong>7</strong>
+          decision regimes
+        </div>
+        <div class="metric">
+          <strong>7,000</strong>
+          completed production runs
+        </div>
+        <div class="metric">
+          <strong>0</strong>
+          production failures
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Principal Comparison</h2>
+      <p>
+        Against the balanced scalar receding-horizon controller B0, the PV-PP regime
+        produced the following mean paired differences across 1,000 common seeds:
+      </p>
+      <ul>
+        <li><strong>+185.6</strong> delivered usable units</li>
+        <li><strong>-178.4</strong> physical-shortage unit-weeks</li>
+        <li><strong>+$380.6k</strong> terminal manufacturer cash</li>
+        <li><strong>-$71.3k</strong> adaptation expenditure</li>
+        <li><strong>+34.8</strong> terminal S1 line productive power</li>
+        <li><strong>+45.1</strong> terminal S1 quality productive power</li>
+      </ul>
+      <p>
+        PV-PP delivered more usable product in <strong>999 of 1,000</strong> matched
+        stochastic scenarios and preserved greater terminal S1 line and quality productive
+        power in <strong>1,000 of 1,000</strong>.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Interpretation</h2>
+      <p>
+        The results establish strong behavioral separation within the frozen Asterion
+        benchmark. Trace-supported analysis indicates that the separation is associated
+        with differences in how the architectures sequence recovery, diversification,
+        renegotiation, conservation, logistics, financing, and productive-capacity
+        preservation.
+      </p>
+      <p>
+        The result is intentionally benchmark-relative. The paper does <strong>not</strong>
+        claim universal superiority of PV-PP over scalar optimization, model-predictive
+        control, multi-objective optimization, or other decision architectures.
+      </p>
+      <p>
+        Instead, the benchmark asks a narrower question: when a productive system begins to
+        degrade, does explicitly representing productive capacity, adequacy, recovery paths,
+        and future productive options change decision behavior in consequential ways?
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Repository Contents</h2>
+      <p>
+        The associated GitHub repository is intended to preserve the publication-facing
+        research record for the white paper, including the current manuscript and related
+        publication artifacts.
+      </p>
+      <p>
+        The full Asterion benchmark execution package, benchmark-definition documents,
+        banking records, and final M14 evidence are maintained in the main PV-PP benchmark
+        repository.
+      </p>
+      <div class="buttons">
+        <!-- Optional: point this to the full benchmark repository. -->
+        <a class="btn secondary" href="ASTERION_BENCHMARK_REPOSITORY_URL_HERE">Asterion Benchmark Repository</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Citation and Status</h2>
+      <p>
+        <strong>Status:</strong> Publication candidate / public research white paper.
+      </p>
+      <p>
+        Repository DOI, archival identifier, and final citation metadata can be added here
+        after deposition to Zenodo, OSF, or another persistent archive.
+      </p>
+      <p class="note">
+        Suggested title: <em>Productive Value-Productive Power in a Dynamic Multi-Agent
+        Productive System: The Asterion Benchmark V2</em>.
+      </p>
+    </section>
+
+    <footer>
+      Productive Value-Productive Power (PV-PP) research • Lance Amundsen
+    </footer>
+  </main>
+</body>
+</html>
