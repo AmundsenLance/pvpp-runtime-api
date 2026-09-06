@@ -292,3 +292,11 @@ See the repository license for terms of use.
 ## Author
 
 Lance Amundsen
+
+## Support and Feedback
+
+The PV-PP Runtime API is currently a public beta. If you are experimenting with the runtime and encounter an implementation problem, documentation ambiguity, unexpected behavior, or a potential defect, please get in touch.
+
+Contact: Lance Amundsen — amundsenlance@gmail.com
+
+Bug reports and reproducible examples are particularly useful.
