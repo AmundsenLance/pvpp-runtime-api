@@ -103,8 +103,16 @@ Expected result:
 
 ### Native Call-Through Example
 
-Runtime V2 includes an authority-bound native call-through example
-demonstrating the required execution sequence.
+Runtime V2 includes a dedicated application-level battery call-through
+example under `examples/battery_callthrough_service/`. This is the
+recommended starting point for developers who want to understand the
+Runtime V2 authority-bound native execution path.
+
+The example carries a real battery action through the canonical decision
+lineage into a registered Python callable. It demonstrates successful
+governed execution, denial before callable entry, single-use/replay
+protection, and propagation of callable execution failures back through
+the runtime.
 
 The important sequence is:
 
@@ -319,8 +327,19 @@ should not automatically be treated as the recommended architecture for
 a new application.
 
 For new development, prefer examples explicitly written for the Runtime
-V2 interfaces, especially examples demonstrating the canonical
-decision/license/ε/native-authorization path.
+V2 interfaces. The two battery examples serve different purposes:
+
+-   `examples/minimal_battery_service/` is the simpler canonical battery
+    example and is useful for understanding the basic Runtime API
+    integration pattern.
+-   `examples/battery_callthrough_service/` is the recommended Runtime V2
+    execution example. It demonstrates the complete
+    decision/license/ε/native-authorization path through an actual
+    registered Python callable, including denial, replay protection, and
+    execution-failure propagation.
+
+The call-through example should be preferred when consequential external
+execution is part of the integration being developed.
 
 ## Documentation
 
