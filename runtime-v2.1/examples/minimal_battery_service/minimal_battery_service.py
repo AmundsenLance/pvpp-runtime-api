@@ -10,8 +10,8 @@ from dataclasses import replace
 from pathlib import Path
 import sys
 
-# For the standalone beta-package example, point at an untouched v0.70 checkout.
-RUNTIME_ROOT = Path(__file__).resolve().parents[1] / "pvpp70" / "pvpp_runtime_prototype_v0_70"
+# Points at the runtime-v2.1/ package root so `pvpp_runtime` is importable.
+RUNTIME_ROOT = Path(__file__).resolve().parents[2]
 if RUNTIME_ROOT.exists():
     sys.path.insert(0, str(RUNTIME_ROOT))
 
