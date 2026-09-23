@@ -1,0 +1,3 @@
+v0.132 inherited Python runtime and test files compared with v0.131 baseline: 143 files identical by SHA-256.
+Changed inherited Python/test files: 0.
+Package directory rename only: pvpp_runtime-build-v0-131 -> pvpp_runtime.

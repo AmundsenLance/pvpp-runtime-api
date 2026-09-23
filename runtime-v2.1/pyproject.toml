@@ -1,0 +1,8 @@
+[project]
+name = "pvpp-runtime"
+version = "0.141"
+description = "Runtime V2 API for the Productive Value-Productive Power (PV-PP) framework"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

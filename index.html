@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="PV-PP Runtime API: Runtime V1 and Runtime V2 implementations for applications built with the Productive Value–Productive Power framework.">
+  <meta name="description" content="PV-PP Runtime API: preserved Runtime V1 and V2 generations plus the current frozen Runtime V2.1 v0.141 implementation for Productive Value–Productive Power applications.">
   <meta name="author" content="Lance Amundsen">
-  <title>PV-PP Runtime API | Lance Amundsen Research</title>
+  <title>PV-PP Runtime API | Runtime V2.1</title>
   <style>
     :root {
       --bg:#f6f7f8; --panel:#fff; --text:#18212b; --muted:#5b6673;
@@ -26,22 +26,23 @@
     .actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
     .button{display:inline-block;padding:.78rem 1.05rem;border-radius:7px;font-weight:650;text-decoration:none;border:1px solid rgba(255,255,255,.45);color:white}
     .button.primary{background:white;color:var(--accent-dark);border-color:white}
-    main{padding:3rem 0 5rem}.status-grid,.card-grid,.two-col{display:grid;gap:1rem}
+    main{padding:3rem 0 5rem}.status-grid,.card-grid,.two-col,.three-col{display:grid;gap:1rem}
     .status-grid{grid-template-columns:repeat(3,1fr);margin-top:-4.1rem;position:relative;z-index:2}
     .status-card,.card,.section-panel,.runtime-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(20,32,46,.05)}
     .status-card{padding:1.2rem 1.3rem}.label{display:block;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.25rem}
     .status-card strong{font-size:1.12rem}section{margin-top:3.5rem}.section-panel{padding:clamp(1.4rem,3vw,2.25rem)}
     h2{margin:0 0 .7rem;font-size:clamp(1.65rem,3vw,2.15rem);letter-spacing:-.018em}h3{margin-top:0;margin-bottom:.45rem;font-size:1.18rem}
     p{margin-top:.55rem;margin-bottom:1rem}.lead{font-size:1.08rem;color:#34414e;max-width:930px}
-    .two-col{grid-template-columns:1fr 1fr}.runtime-card{padding:1.55rem}.runtime-card.current{border-top:5px solid var(--success)}.runtime-card.legacy{border-top:5px solid var(--accent)}
+    .two-col{grid-template-columns:1fr 1fr}.three-col{grid-template-columns:repeat(3,1fr)}
+    .runtime-card{padding:1.45rem}.runtime-card.current{border-top:5px solid var(--success)}.runtime-card.legacy{border-top:5px solid var(--accent)}
     .badge{display:inline-block;padding:.2rem .55rem;border-radius:999px;background:var(--soft);font-size:.78rem;font-weight:700;margin-bottom:.8rem}
     .badge.current{background:var(--success-bg);color:var(--success)}
     .metric{font-size:2rem;line-height:1;font-weight:750;color:var(--success);margin:.5rem 0}.muted{color:var(--muted)}
-    .pipeline{margin:1.3rem 0 0;padding:1rem 1.1rem;background:#111a23;color:#f3f7fa;border-radius:8px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.9rem;white-space:nowrap}
+    .pipeline{margin:1.3rem 0 0;padding:1rem 1.1rem;background:#111a23;color:#f3f7fa;border-radius:8px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.9rem;white-space:pre}
     .callout{margin-top:1.2rem;padding:1rem 1.1rem;border-left:4px solid var(--accent);background:var(--soft);border-radius:4px}
     ul{padding-left:1.25rem}li+li{margin-top:.3rem}code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.92em;background:#eef1f4;padding:.08em .32em;border-radius:4px}
     footer{border-top:1px solid var(--line);background:#eef1f4;color:var(--muted);padding:2rem 0;font-size:.9rem}
-    @media(max-width:820px){.status-grid,.two-col{grid-template-columns:1fr}.status-grid{margin-top:-2.2rem}.hero{padding-top:3.8rem}.topbar{align-items:flex-start;flex-direction:column}}
+    @media(max-width:900px){.three-col{grid-template-columns:1fr}.status-grid,.two-col{grid-template-columns:1fr}.status-grid{margin-top:-2.2rem}.hero{padding-top:3.8rem}.topbar{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
@@ -52,11 +53,12 @@
       <a href="https://github.com/AmundsenLance/PV-PP-Runtime-API">GitHub Repository ↗</a>
     </div>
     <div class="hero">
-      <div class="eyebrow">PV-PP Runtime API · Two Runtime Generations</div>
+      <div class="eyebrow">PV-PP Runtime API · Framework Version 2.1</div>
       <h1>PV-PP Runtime API</h1>
       <p class="subtitle">
         Reference runtime implementations for applications built with the Productive Value–Productive Power (PV-PP) framework.
-        Runtime V1 preserves the original frozen v0.70 interface; Runtime V2 is the current v0.131 successor and freeze candidate.
+        Runtime V2.1 v0.141 is the current frozen successor baseline. Runtime V1 v0.70 and Runtime V2 v0.131 remain preserved
+        as historical runtime generations for reproducibility and comparison.
       </p>
       <div class="actions">
         <a class="button primary" href="https://github.com/AmundsenLance/PV-PP-Runtime-API">View Source on GitHub</a>
@@ -68,47 +70,90 @@
 
 <main class="wrap">
   <div class="status-grid" aria-label="Project status">
-    <div class="status-card"><span class="label">Current Generation</span><strong>Runtime V2 · v0.131</strong></div>
-    <div class="status-card"><span class="label">Historical Freeze</span><strong>Runtime V1 · v0.70</strong></div>
-    <div class="status-card"><span class="label">Project Status</span><strong>Public Beta</strong></div>
+    <div class="status-card"><span class="label">Current Frozen Runtime</span><strong>Runtime V2.1 · v0.141</strong></div>
+    <div class="status-card"><span class="label">Regression Baseline</span><strong>1093 / 1093 passing</strong></div>
+    <div class="status-card"><span class="label">Preserved Generations</span><strong>V1 · V2 · V2.1</strong></div>
   </div>
 
   <section class="section-panel">
-    <h2>One project, two runtime generations</h2>
+    <h2>One repository, three preserved runtime generations</h2>
     <p class="lead">
-      The repository preserves two generations of the common PV-PP runtime. Runtime V1 remains unchanged for reproducibility,
-      compatibility, and historical reference. Runtime V2 is a controlled successor developed from the mature V1 codebase and
-      incorporates the Version 2 framework interfaces and subsequent runtime architecture.
+      The repository now preserves the two earlier frozen runtime lines alongside the Version 2.1 successor. Runtime V1 remains
+      the original v0.70 interface freeze. Runtime V2 preserves the v0.131 second-generation baseline. Runtime V2.1 implements the
+      applicable Framework Version 2.1 changes without rewriting either historical generation.
     </p>
-    <div class="pipeline">P_I(t) → Φ → H → G → R → Graph/seed substrate → Π → Π completeness → Joint Recovery → Constraints → Domain Framing → Adequacy → Σ → ε</div>
+    <div class="pipeline">(P_i(t), O_i(t)) → Φ → H → G → ℛ → Graph / seed substrate → Π → completeness → Constraints → Domain Framing → Adequacy → Σ → ε</div>
     <div class="callout">
-      Framework meaning remains governed by the authoritative PV-PP framework documentation. The runtime packages implement the
-      corresponding application interfaces; runtime code does not redefine the theory.
+      Framework meaning remains governed by the authoritative PV-PP Framework Version 2.1 documentation. Runtime source and tests
+      govern implemented runtime behavior. The runtime does not redefine the framework.
     </div>
   </section>
 
   <section id="runtimes">
     <h2>Choose a runtime</h2>
-    <div class="two-col">
+    <div class="three-col">
       <article class="runtime-card legacy">
         <span class="badge">Historical Frozen Runtime</span>
-        <h3>Runtime V1 — build v0.70</h3>
+        <h3>Runtime V1 — v0.70</h3>
         <p><strong>Runtime Interface Freeze 1.</strong> The original frozen common runtime interface.</p>
         <div class="metric">496 / 496</div>
-        <p class="muted">Original internal regression suite at freeze. An independently maintained Small Economy integration suite also passed 77/77 unchanged.</p>
-        <p>Use V1 for existing v0.70 integrations, historical reproduction, or comparison with the successor runtime. V1 is intentionally retained unchanged.</p>
+        <p class="muted">Original internal regression suite at freeze. The independently maintained Small Economy integration suite also passed 77/77 unchanged.</p>
+        <p>Use for historical reproduction, existing v0.70 integrations, or comparison with later generations.</p>
         <p><a href="runtime-v1/">Browse Runtime V1 →</a></p>
       </article>
 
-      <article class="runtime-card current">
-        <span class="badge current">Current Successor Runtime</span>
-        <h3>Runtime V2 — build v0.131</h3>
-        <p><strong>Current freeze candidate.</strong> New applications should normally target Runtime V2.</p>
+      <article class="runtime-card legacy">
+        <span class="badge">Preserved Prior Runtime</span>
+        <h3>Runtime V2 — v0.131</h3>
+        <p><strong>Frozen prior successor baseline.</strong> Preserved separately and not rewritten for Version 2.1.</p>
         <div class="metric">967 / 967</div>
         <p class="muted">Complete v0.131 regression suite, including authority-bound call-through and canonical-lineage hostile tests.</p>
-        <p>V2 adds typed broader-state interfaces, governed re-entry, dynamic represented structure, evidence/control provenance, capability evolution, architecture-invariance instrumentation, and authority-bound native call-through.</p>
+        <p>Use for reproduction or comparison with the pre-V2.1 second-generation runtime.</p>
         <p><a href="runtime-v2/">Browse Runtime V2 →</a></p>
       </article>
+
+      <article class="runtime-card current">
+        <span class="badge current">Current Frozen Runtime</span>
+        <h3>Runtime V2.1 — v0.141</h3>
+        <p><strong>Current Version 2.1 successor baseline.</strong> New Version 2.1 applications should normally target this generation.</p>
+        <div class="metric">1093 / 1093</div>
+        <p class="muted">Frozen full regression suite. The controlled Small Economy V2.1 objective-perturbation benchmark also passes its eight-case program.</p>
+        <p>V2.1 adds typed objective handling, bounded objective responsiveness/discovery, information governance, Transfer History,
+           replay sufficiency, transition-relevant state sufficiency, and objective-lifecycle dependency/re-entry while preserving
+           canonical operator sovereignty.</p>
+        <p><a href="runtime-v2.1/">Browse Runtime V2.1 →</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-panel">
+    <h2>What Version 2.1 adds</h2>
+    <div class="two-col">
+      <div>
+        <h3>Decision and objective interfaces</h3>
+        <ul>
+          <li>structured perceived decision state <code>P_i(t)</code>;</li>
+          <li>adjacent actor objective interface <code>O_i(t)</code>;</li>
+          <li>descriptive Objective Responsiveness;</li>
+          <li>bounded objective-directed discovery; and</li>
+          <li>objective lifecycle dependency and bounded re-entry.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Evidence, history, and reconstruction</h3>
+        <ul>
+          <li>authority/applicability/permitted-use information governance;</li>
+          <li>disposition-preserving retrieval and temporal provenance;</li>
+          <li>Transfer History as a role-distinct event substrate;</li>
+          <li>Replay Sufficiency; and</li>
+          <li>Transition-Relevant State Sufficiency contracts.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      Objectives do not become hidden utility, selection authority, adequacy overrides, viability conditions, or sources of nonexistent
+      future capability. Capability-development objectives can influence only authorized channels; desired capability becomes current
+      Productive Power only after a realized and evidenced capability/state transition.
     </div>
   </section>
 
@@ -118,65 +163,70 @@
       <div>
         <h3>The runtime owns</h3>
         <ul>
-          <li>the common PV-PP decision and governance architecture;</li>
+          <li>the implemented common PV-PP decision and governance architecture;</li>
           <li>registered and governed represented structure;</li>
-          <li>canonical candidate evaluation, adequacy, and Σ selection;</li>
-          <li>execution licensing and ε authority boundaries; and</li>
-          <li>governed invalidation and re-entry mechanisms.</li>
+          <li>implemented candidate/completeness, constraints, adequacy, and selection surfaces;</li>
+          <li>execution licensing and ε authority boundaries;</li>
+          <li>governed invalidation and re-entry; and</li>
+          <li>the Version 2.1 validation/governance interfaces actually present in v0.141.</li>
         </ul>
       </div>
       <div>
         <h3>The host/application owns</h3>
         <ul>
-          <li>authoritative actual state and world mechanics;</li>
-          <li>application-specific semantics and measurements;</li>
-          <li>external persistence and enforcement mechanisms;</li>
-          <li>neutral causal/world projections supplied through runtime boundaries; and</li>
+          <li>authoritative actual state and domain/world mechanics;</li>
+          <li>semantic completeness of domain-specific transition-relevant state;</li>
+          <li>application-specific measurements and objective content;</li>
+          <li>external persistence, instrumentation, and enforcement mechanisms;</li>
+          <li>environmental realization; and</li>
           <li>the authoritative Layer-1 state transition.</li>
         </ul>
       </div>
     </div>
-    <p>Runtime selection or licensing does not itself mutate the authoritative external world.</p>
+    <p>Runtime selection, licensing, or a successful native call does not itself prove that the authoritative external world reached the intended successor state.</p>
   </section>
 
   <section>
-    <h2>Runtime V2 highlights</h2>
+    <h2>Runtime V2.1 execution boundary</h2>
     <div class="section-panel">
       <p>
-        Runtime V2 extends the original runtime with earliest-invalidated-stage governance re-entry, provenance-bearing dynamic Graph
-        and structural governance, evidence-source and control-topology handling, non-scalar capability evolution and constructibility,
-        and cross-domain architecture-invariance instrumentation.
+        Runtime V2.1 preserves authority-bound synchronous native call-through. Consequential invocation through the runtime must derive
+        from the applicable runtime-issued governance lineage rather than from host-created authority-looking objects.
       </p>
       <p>
-        v0.131 also requires native consequential invocation through the PV-PP interface to derive from runtime-private provenance across
-        the canonical <code>decision cycle → Σ → execution license → active ε episode → native authorization → invocation</code> lineage.
-        Host-created or reconstructed authority-looking objects do not create PV-PP native execution authority.
+        The frozen v0.141 runtime remains <strong>synchronous</strong>. It has <strong>no asynchronous sensing, external instrumentation hooks,
+        or autonomous in-flight environment-change detection</strong>. Applications may supply instrumentation and updated state/evidence
+        around the runtime, but those capabilities must not be attributed to v0.141 itself.
       </p>
       <p>
-        Asynchronous/distributed execution, autonomous semantic discovery, automatic PP-domain invention, unrestricted self-modification,
-        and replacement of conventional operating-system/IAM/network enforcement remain outside the current runtime scope.
+        PV-PP runtime governance also does not replace operating-system security, IAM, network enforcement, sandboxing, or other conventional
+        controls required by the deployment environment.
       </p>
     </div>
   </section>
 
   <section class="section-panel">
     <h2>Repository organization</h2>
-    <p>The two runtime generations are kept side by side in the same repository:</p>
-    <div class="pipeline">PV-PP-Runtime-API/ &nbsp;├── runtime-v1/ &nbsp;&nbsp;└── v0.70 frozen generation &nbsp;&nbsp;&nbsp;└── runtime-v2/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── v0.131 successor generation</div>
+    <p>The three preserved runtime generations are kept side by side:</p>
+    <div class="pipeline">PV-PP-Runtime-API/
+├── runtime-v1/     # frozen v0.70 historical generation
+├── runtime-v2/     # frozen v0.131 prior successor
+└── runtime-v2.1/   # current frozen v0.141 Version 2.1 successor</div>
     <p>
-      Development builds between the two freezes are engineering history rather than separate supported runtime generations.
-      Runtime-specific README files, tests, examples, benchmarks, and documentation remain with their respective generation.
+      Development builds remain engineering history rather than additional top-level supported generations. Runtime-specific source,
+      tests, examples, benchmarks, release records, and documentation should remain with the generation they describe.
     </p>
   </section>
 
   <section class="section-panel">
     <h2>About PV-PP</h2>
     <p>
-      Productive Value–Productive Power (PV-PP) is an economic and decision framework centered on Productive Value, Productive Power,
-      represented and perceived productive state, governing domains, recovery structure, and viability-aware action selection.
+      Productive Value–Productive Power (PV-PP) is a productive-system and decision framework centered on Productive Value,
+      Productive Power, actual and perceived state, actor objectives, viability, recovery, governance, candidate construction,
+      selection, consequential execution, and authoritative state transition.
     </p>
     <p>
-      This site concerns the runtime API specifically. It does not reproduce the complete theoretical, mathematical, benchmark,
+      This site concerns the Runtime API specifically. It does not reproduce the complete theoretical, mathematical, benchmark,
       proof, or research record of the PV-PP framework.
     </p>
   </section>
@@ -185,7 +235,7 @@
 <footer>
   <div class="wrap">
     <strong>PV-PP Runtime API</strong><br>
-    Runtime V1 · v0.70 &nbsp;|&nbsp; Runtime V2 · v0.131<br>
+    Runtime V1 · v0.70 &nbsp;|&nbsp; Runtime V2 · v0.131 &nbsp;|&nbsp; Runtime V2.1 · v0.141<br>
     © 2026 Lance Amundsen. Runtime source licensed under the repository license.
   </div>
 </footer>
