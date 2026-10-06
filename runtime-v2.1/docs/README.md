@@ -1,194 +1,100 @@
-# PV-PP Framework Version 2.1 --- Documentation Guide
+# PVPP Runtime V2.1 — Programmer Documentation
 
-This directory contains the **current PV-PP Version 2.1 public
-documentation set**. The numbered documents are arranged in a
-recommended reading and working order. They are not "volumes" and do not
-need to be read sequentially for every use case.
+This directory contains the **current programmer documentation set for PVPP Framework Version 2.1 and frozen Runtime V2.1 v0.141**.
+
+The former numbered 01–09 reader documents have been replaced here by three complementary books. They are organized by how a programmer is likely to use them: start quickly, learn and build, then look up exact runtime behavior.
 
 ## Where to Start
 
--   **New to PV-PP?** Start with **01**.
--   **Need the architecture?** Read **02--03**.
--   **Building a model or application?** Use **04**.
--   **Writing software against the runtime?** Use **05**.
--   **Comparing PV-PP with established theory?** Use **06**.
--   **Building or evaluating benchmarks?** Use **07--09**.
+### 1. PVPP Getting Started
 
-## Current Documentation Set
+**Directory:** [`PVPP Getting Started/`](./PVPP%20Getting%20Started/)
 
-  -----------------------------------------------------------------------
-  No.               Document          Primary purpose   Document class
-  ----------------- ----------------- ----------------- -----------------
-  **01**            **PVPP --- What   Accessible        External
-                    Is It And What Is introduction to   explanation /
-                    It Good For?**    PV-PP, its        orientation
-                                      purpose, scope,   
-                                      and principal     
-                                      distinctions.     
+The shortest path into PVPP and Runtime v0.141.
 
-  **02**            **PVPP Framework  Technical         External review /
-                    Executive         overview for      orientation
-                    Overview**        serious readers   
-                                      and external      
-                                      reviewers,        
-                                      including         
-                                      maturity,         
-                                      evidence,         
-                                      limitations, and  
-                                      open research     
-                                      questions.        
+Use this first if you are new to the project. It introduces the framework/runtime/host boundary, shows how to verify the frozen runtime, and walks through a small runnable application.
 
-  **03**            **PVPP Compact    Compact           Supporting
-                    Architecture      whole-system map  architecture
-                    Skeleton**        of actual state,  summary
-                                      perceived state,  
-                                      objectives,       
-                                      decision          
-                                      architecture,     
-                                      execution,        
-                                      Layer-1           
-                                      transition, and   
-                                      supporting        
-                                      governance        
-                                      surfaces.         
+### 2. PVPP Programmer's Guide
 
-  **04**            **PVPP Scenario   Primary guide for Modeling guidance
-                    and Model         translating a     
-                    Architecture      real or           
-                    Guide**           hypothetical      
-                                      domain into a     
-                                      valid PV-PP       
-                                      model.            
+**Directory:** [`PVPP Programmer's Guide/`](./PVPP%20Programmer%27s%20Guide/)
 
-  **05**            **PVPP Runtime    Developer         Runtime
-                    API Reference**   reference for the implementation
-                                      frozen PV-PP      reference
-                                      Runtime V2.1      
-                                      successor         
-                                      baseline, v0.141. 
+The main learning and application-development guide.
 
-  **06**            **PVPP Structural Bounded           Theory /
-                    Comparison and    comparison with   positioning
-                    Theoretical       established       
-                    Positioning**     decision,         
-                                      control,          
-                                      game-theoretic,   
-                                      viability, and    
-                                      safety-oriented   
-                                      approaches.       
+Use it to understand PVPP concepts, model productive systems, build applications, work through the canonical decision architecture, handle execution and state transition, test models, and use the supplied development workflow and examples.
 
-  **07**            **PVPP Benchmark  Converts a valid  Benchmark design
-                    Design Guide**    PV-PP             guidance
-                                      scenario/model    
-                                      into a controlled 
-                                      benchmark,        
-                                      simulation, or    
-                                      experimental      
-                                      specification.    
+### 3. PVPP Programmer's Reference
 
-  **08**            **PVPP Benchmark  Converts a        Implementation /
-                    Programming and   benchmark         benchmark
-                    Runtime           specification     guidance
-                    Integration       into executable   
-                    Guide**           software and      
-                                      explains when and 
-                                      how to integrate  
-                                      Runtime V2.1.     
+**Directory:** [`PVPP Programmer's Reference/`](./PVPP%20Programmer%27s%20Reference/)
 
-  **09**            **PVPP Safe       Narrow teaching   Evidence /
-                    Margin vs Fast    example           teaching example
-                    Gain Gridworld    separating        
-                    Teaching          visible           
-                    Benchmark**       task/reward       
-                                      success from      
-                                      viability margin, 
-                                      recovery, and     
-                                      false success.    
-  -----------------------------------------------------------------------
+The detailed technical reference for frozen Runtime V2.1 v0.141.
 
-## Recommended Reader Paths
+Use it when exact behavior matters: runtime types and methods, stage contracts, host protocols, validation, execution licensing, governed re-entry, errors, limitations, compatibility, and the supported application-facing surface.
 
-**General reader**\
-01 → 02 → 03
+## Recommended Reading Path
 
-**Researcher or reviewer**\
-01 → 02 → 03 → 06, then the relevant modeling, benchmark, proof, or
-research materials.
+**New programmer**
 
-**Application/model developer**\
-01 → 03 → 04
+`PVPP Getting Started → PVPP Programmer's Guide → PVPP Programmer's Reference as needed`
 
-**Software developer**\
-01 → 03 → 04 → 05
+**Experienced developer integrating v0.141**
 
-**Benchmark developer**\
-01 → 03 → 04 → 07 → 08 → 09
+`PVPP Getting Started → PVPP Programmer's Reference`
 
-The paths are recommendations, not authority relationships.
+**Model/application designer**
+
+`PVPP Getting Started → PVPP Programmer's Guide`
+
+The three books are complementary. The Getting Started book is orientation and a runnable entry point; the Programmer's Guide teaches the framework and application method; the Programmer's Reference is for precise runtime lookup.
 
 ## Authority and Scope
 
-The public documentation set contains several different kinds of
-documents. They should not be treated as interchangeable sources of
-authority.
+These programmer documents explain and document PVPP, but they do not replace the underlying sources of authority.
 
--   **Framework authority:** Current Framework Version 2.1 owner
-    specifications control canonical PV-PP framework meaning.
--   **Runtime authority:** Frozen Runtime V2.1 v0.141 source and tests
-    control implemented runtime behavior. The Runtime API Reference
-    explains that implementation but does not redefine the framework.
--   **Modeling and benchmark guidance:** Documents 04, 07, and 08
-    explain how to construct models and tests without creating new
-    canonical operators or doctrine.
--   **External explanation and positioning:** Documents 01, 02, 03, and
-    06 explain, summarize, or position the framework; they do not
-    supersede owner specifications.
--   **Teaching/evidence examples:** Document 09 demonstrates a bounded
-    proposition and is not validation of the complete framework.
+- **Framework authority:** the canonical PVPP Framework Version 2.1 owner specifications control framework meaning.
+- **Runtime authority:** the frozen Runtime V2.1 v0.141 source, tests, and frozen file manifest control implemented runtime behavior.
+- **PVPP Getting Started:** introductory and application-facing guidance.
+- **PVPP Programmer's Guide:** explanatory and application-development guidance.
+- **PVPP Programmer's Reference:** detailed description of the frozen v0.141 application surface; it does not redefine the framework.
 
-## Framework and Runtime Must Remain Distinct
+If explanatory documentation conflicts with a controlling framework owner specification or the frozen runtime source, the controlling source prevails.
 
-PV-PP Framework Version 2.1 and Runtime V2.1 are related but not
-identical.
+## Framework and Runtime Are Distinct
 
-The framework defines the architecture and permits application/runtime
-implementations consistent with that architecture. The current frozen
-runtime, **v0.141**, implements a substantial synchronous subset and
-passed its frozen **1093/1093 regression suite**.
+PVPP Framework Version 2.1 and Runtime V2.1 v0.141 are related but separately versioned.
 
-Runtime v0.141 **does not provide asynchronous sensing, external
-instrumentation hooks, or autonomous in-flight environment-change
-detection**. Applications may provide instrumentation and state/evidence
-updates around the runtime, but those capabilities must not be
-attributed to v0.141 itself.
+The framework defines the architecture. Runtime v0.141 is the frozen Version 2.1-aligned implementation and passed its frozen **1093/1093 regression suite**.
 
-## Versioning and Historical Material
+Runtime v0.141 is **synchronous**. It does not provide asynchronous sensing, external instrumentation hooks, autonomous in-flight environment-change detection, or guaranteed mid-flight cancellation. Applications may provide external instrumentation, state/evidence updates, and enforcement around the runtime, but those capabilities must not be attributed to v0.141 itself.
 
-The numbered files in this directory are the **current Version 2.1
-documentation set**.
+## Directory Layout
 
-Earlier documentation has been moved to **Pre-v2.1 Consolidation
-Material** and related archive locations. Those files preserve
-provenance, prior formulations, and development history. They are not
-current documentation and should not be used to override the Version 2.1
-framework, frozen v0.141 runtime, or the current documents listed above.
+```text
+docs/
+├── PVPP Getting Started/
+│   ├── ai-rules-and-prompts/
+│   ├── battery/
+│   ├── PVPP_Framework_Getting_Started_Ed2.1_rc1.docx
+│   ├── PVPP_Framework_Getting_Started_Ed2.1_rc1.pdf
+│   └── README.md
+├── PVPP Programmer's Guide/
+│   ├── programs/
+│   ├── PVPP_Programmers_Guide_Ed2.1_rc1.docx
+│   ├── PVPP_Programmers_Guide_Ed2.1_rc1.pdf
+│   └── README.md
+├── PVPP Programmer's Reference/
+│   ├── programmers-reference/
+│   ├── PVPP_Programmers_Reference_Ed2.1_rc1.docx
+│   ├── PVPP_Programmers_Reference_Ed2.1_rc1.pdf
+│   └── README.md
+└── README.md
+```
 
-The former "Volume One through Volume Six" organization is retired. The
-**01--09 prefixes indicate navigation/reading order only**; they do not
-create a new volume system or imply that every reader must read every
-document.
+## Historical Documentation
 
-## Suggested Citation / Identification Practice
+The former numbered reader-document set is no longer the current programmer documentation in this directory. Historical and superseded materials may still be retained elsewhere for provenance and development history, but they should not be used to override the current Version 2.1 framework, frozen v0.141 runtime, or this three-book documentation organization.
 
-When referring to a document, identify its title and Version 2.1 status
-rather than calling it "Volume 1," "Volume 2," and so on. When
-implementation behavior matters, also identify the runtime version,
-currently frozen **Runtime V2.1 v0.141**.
+---
 
-------------------------------------------------------------------------
-
-**Current documentation baseline:** PV-PP Framework Version 2.1\
-**Current frozen runtime baseline:** PV-PP Runtime V2.1 v0.141\
-**Documentation sequence:** 01--09\
-**Historical documentation:** retained separately as pre-Version-2.1
-consolidated/archive material
+**Framework baseline:** PVPP Framework Version 2.1  
+**Frozen runtime baseline:** PVPP Runtime V2.1 v0.141  
+**Programmer documentation:** PVPP Getting Started · PVPP Programmer's Guide · PVPP Programmer's Reference
