@@ -1,0 +1,30 @@
+1 buyer                  sell     succeeded         -> completed
+                         set aside: decline: Sigma | refund: refund_basis
+                         cups=11 revenue=2.50 unreconciled=0 refunds_owed=0
+2 buyer, capture lost    sell     indeterminate     -> partial_realization
+                         set aside: decline: Sigma | refund: refund_basis
+                         cups=10 revenue=2.50 unreconciled=1 refunds_owed=0
+3 buyer, capture open    decline  succeeded         -> completed
+                         set aside: sell: reconciliation_hold | refund: refund_basis
+                         cups=10 revenue=2.50 unreconciled=1 refunds_owed=0
+4 buyer, after settle    sell     succeeded         -> completed
+                         set aside: decline: Sigma | refund: refund_basis
+                         cups=9 revenue=7.50 unreconciled=0 refunds_owed=0
+5 buyer, no cup          sell     completed_invalid -> partial_realization
+                         set aside: decline: Sigma | refund: refund_basis
+                         cups=8 revenue=10.00 unreconciled=0 refunds_owed=1
+6 next episode           refund   succeeded         -> completed
+                         set aside: sell: inadequate | decline: inadequate
+                         cups=8 revenue=7.50 unreconciled=0 refunds_owed=0
+7 buyer, network fails   sell     authority withdrawn (re-enter at Constraints)
+                         set aside: decline: Sigma | refund: refund_basis
+                         cups=8 revenue=7.50 unreconciled=0 refunds_owed=0
+7' buyer, re-decided     decline  succeeded         -> completed
+                         set aside: sell: card_network | refund: card_network, refund_basis
+                         cups=8 revenue=7.50 unreconciled=0 refunds_owed=0
+8 buyer, network back    sell     succeeded         -> completed
+                         set aside: decline: Sigma | refund: refund_basis
+                         cups=7 revenue=10.00 unreconciled=0 refunds_owed=0
+9 buyer, monitor silent  decline  succeeded         -> completed
+                         set aside: sell: card_network | refund: card_network, refund_basis
+                         cups=7 revenue=10.00 unreconciled=0 refunds_owed=0

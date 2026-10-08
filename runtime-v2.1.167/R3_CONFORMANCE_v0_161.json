@@ -1,0 +1,184 @@
+{
+  "behavioral_gate": "tests/test_r22_phase15_strengthened_validation.py::test_v0156_behavioral_r3_01_through_r3_24_gate",
+  "hardening_regressions": [
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_01_restart_reloads_snapshot_and_assessment_for_surviving_control_request",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_02_control_request_rejects_posture_mismatch_and_unknown_control",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_03_adapter_rejects_unknown_command_mapping_and_ambiguous_namespace",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_04_canonical_finality_cannot_be_asserted_while_episode_active",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_05_retry_contract_cannot_be_registered_after_effect_evidence",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_06_recovery_claim_strings_cannot_substitute_for_control_and_layer1_evidence",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_07_dependency_fact_lookup_is_exact_and_subject_scoped",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_08_ownership_requires_registered_authority_and_expiry_is_enforced",
+    "tests/test_r22_phase15_v0156_hardening.py::test_v0156_09_continuation_snapshot_conflict_cannot_mutate_canonical_state"
+  ],
+  "real_crash_gate": "tests/test_r22_phase15_real_crash_matrix.py::test_v0156_real_process_death_matrix",
+  "requirements": {
+    "R3-01": {
+      "negative": "tests/test_r22_phase12_race_matrix.py::test_race10_duplicate_observation_is_idempotent",
+      "positive": "tests/test_r22_phase10_operational.py::test_operational_pilot_full_chain_without_semantic_bypass",
+      "surface": "ExternalObservation / submit_observation"
+    },
+    "R3-02": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_source_authority_self_named_and_out_of_scope_remain_nonauthoritative",
+      "positive": "tests/test_r22_phase9_simulation.py::test_trace1_reachability_change_flows_observation_to_dependency",
+      "surface": "SourceRegistration + ObservationAdmissionRecord"
+    },
+    "R3-03": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_identity_fabricated_and_cross_configuration_lineage_rejected",
+      "positive": "tests/test_r3_phase2_canonical_bridge.py::test_active_execution_registration_is_durable_and_unique",
+      "surface": "CanonicalExecutionHandle + ActiveExecutionRecord"
+    },
+    "R3-04": {
+      "negative": "tests/test_r3_phase2_canonical_bridge.py::test_cross_configuration_lineage_rejected",
+      "positive": "tests/test_r3_phase2_canonical_bridge.py::test_active_execution_registration_is_durable_and_unique",
+      "surface": "execution/canonical/correlation identities"
+    },
+    "R3-05": {
+      "negative": "tests/test_r22_phase13_crash_injection.py::test_crash03_during_continuation_assessment_cannot_commit_stale_snapshot",
+      "positive": "tests/test_r3_phase5_continuation.py::test_active_epsilon_maps_to_continue",
+      "surface": "AdmittedFactChange + material snapshot transaction"
+    },
+    "R3-06": {
+      "negative": "tests/test_r3_phase5_continuation.py::test_caller_cannot_supply_continuation_posture",
+      "positive": "tests/test_r3_phase5_continuation.py::test_continuation_failure_maps_canonical_abort_return",
+      "surface": "ContinuationAssessment via canonical epsilon/re-entry"
+    },
+    "R3-07": {
+      "negative": "tests/test_r22_phase12_race_matrix.py::test_race03_material_change_during_checkpoint_invalidates_old_snapshot",
+      "positive": "tests/test_r3_phase5_continuation.py::test_checkpoint_captures_fresh_snapshot_internally",
+      "surface": "checkpoint operation"
+    },
+    "R3-08": {
+      "negative": "tests/test_r22_phase12_race_matrix.py::test_race02_observation_after_consumption_never_retroactively_unconsumes",
+      "positive": "tests/test_r22_phase9_simulation.py::test_trace2_authority_revocation_fences_future_not_consumed_history",
+      "surface": "owner/fence + canonical authority invalidation"
+    },
+    "R3-09": {
+      "negative": "tests/test_r22_phase6_control.py::test_control_requires_committed_assessment",
+      "positive": "tests/test_r22_phase13_crash_injection.py::test_crash04_control_request_survives_restart_before_dispatch",
+      "surface": "ExecutionControlRequest"
+    },
+    "R3-10": {
+      "negative": "tests/test_r22_phase10_operational.py::test_operational_control_adapter_cannot_widen_mapping",
+      "positive": "tests/test_r22_phase10_operational.py::test_operational_pilot_full_chain_without_semantic_bypass",
+      "surface": "AdapterRegistration + dispatch"
+    },
+    "R3-11": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_unverified_enforcement_callback_cannot_become_world_effect",
+      "positive": "tests/test_r22_phase10_operational.py::test_operational_pilot_full_chain_without_semantic_bypass",
+      "surface": "ControlAttemptRecord + EnforcementRecord"
+    },
+    "R3-12": {
+      "negative": "tests/test_r22_phase10_operational.py::test_controller_completion_does_not_create_effect_state",
+      "positive": "tests/test_r22_phase12_race_matrix.py::test_race07_effect_before_enforcement_ack_is_independently_reconciled",
+      "surface": "WorldEffectReconciliationState"
+    },
+    "R3-13": {
+      "negative": "tests/test_r22_phase13_crash_injection.py::test_crash10_old_owner_return_may_not_commit_control",
+      "positive": "tests/test_r22_phase6_control.py::test_ownership_fence_advances_and_stale_owner_rejected",
+      "surface": "durable SupervisoryOwnershipRecord"
+    },
+    "R3-14": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_finality_cannot_be_rewritten_and_late_effect_reconciles_forward",
+      "positive": "tests/test_r22_phase12_race_matrix.py::test_race10_duplicate_observation_is_idempotent",
+      "surface": "stable semantic IDs + idempotency/finality"
+    },
+    "R3-15": {
+      "negative": "tests/test_r22_phase9_simulation.py::test_audit_oracle_is_read_only_surface",
+      "positive": "tests/test_r22_phase14_conformance_closure.py::test_phase14_simulation_operational_parity",
+      "surface": "simulation sources/adapters/scheduler"
+    },
+    "R3-16": {
+      "negative": "tests/test_r3_phase1_supervisory_store.py::test_audit_is_append_only_and_deduplicates_semantic_event_id",
+      "positive": "tests/test_r22_phase14_conformance_closure.py::test_phase14_complete_causal_audit_trace",
+      "surface": "SupervisoryAuditEvent / query"
+    },
+    "R3-17": {
+      "negative": "tests/test_r22_phase9_simulation.py::test_trace4_out_of_order_and_contradictory_observations_preserve_governed_view",
+      "positive": "tests/test_r22_phase12_race_matrix.py::test_race11_out_of_order_observation_does_not_displace_newer_view",
+      "surface": "append-only observation history + current-view version"
+    },
+    "R3-18": {
+      "negative": "tests/test_r22_phase9_simulation.py::test_trace3_resource_loss_requires_explicit_dependency_not_automatic_inference",
+      "positive": "tests/test_r22_phase14_conformance_closure.py::test_phase14_second_fact_change_during_shared_fanout",
+      "surface": "registered reverse active-dependency index"
+    },
+    "R3-19": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_snapshot_laundering_stale_descriptor_rejected",
+      "positive": "tests/test_r3_phase5_continuation.py::test_active_epsilon_maps_to_continue",
+      "surface": "DependencySetDescriptor + GovernanceSnapshotToken"
+    },
+    "R3-20": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_split_brain_stale_owner_cannot_commit_control",
+      "positive": "tests/test_r22_phase6_control.py::test_ownership_fence_advances_and_stale_owner_rejected",
+      "surface": "owner_id / owner_fence"
+    },
+    "R3-21": {
+      "negative": "tests/test_r22_phase13_crash_injection.py::test_crash09_during_recovery_remains_fenced_until_requirements_and_fresh_snapshot",
+      "positive": "tests/test_r22_phase8_recovery.py::test_fresh_snapshot_required_before_completion",
+      "surface": "RecoveryRequirementProfile + RecoveryReconciliationRecord"
+    },
+    "R3-22": {
+      "negative": "tests/test_r22_phase10_operational.py::test_operational_control_adapter_cannot_widen_mapping",
+      "positive": "tests/test_r22_phase9_simulation.py::test_trace6_raced_noninterruptible_effect_preserves_too_late_and_late_effect",
+      "surface": "AdapterRegistration + time-local ControlAttemptRecord"
+    },
+    "R3-23": {
+      "negative": "tests/test_r22_phase11_api_misuse.py::test_retry_safety_cannot_be_declared_post_hoc_after_unknown_effect",
+      "positive": "tests/test_r22_phase13_crash_injection.py::test_crash05_after_dispatch_before_ack_remains_effect_unresolved",
+      "surface": "dual finality + effect_unresolved"
+    },
+    "R3-24": {
+      "negative": "tests/test_r22_phase10_operational.py::test_host_layer1_authority_cannot_invent_effect_reconciliation",
+      "positive": "tests/test_r22_phase10_operational.py::test_operational_pilot_full_chain_without_semantic_bypass",
+      "surface": "per-execution records + host-authoritative Layer-1/world reconciliation"
+    }
+  },
+  "round2_hardening_regressions": [
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_01_lease_expiry_uses_trusted_clock_not_caller_timestamp",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_02_retry_contract_cannot_be_added_after_dispatch",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_03_registration_authority_cannot_self_bootstrap",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_04_persist_failure_marks_continuation_reconciliation_required",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_05_target_suffix_rejects_wildcards_and_path_syntax",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_06_vendor_command_binding_records_real_command_without_widening",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_07_continue_posture_remains_non_authorizing_for_control",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_08_caller_boolean_cannot_verify_controller_attestation",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_09_caller_boolean_cannot_create_layer1_authority",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_10_source_registration_requires_host_root_proof",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_11_retry_contract_cannot_be_added_after_supervised_native_invocation",
+    "tests/test_r22_phase16_v0157_round2_hardening.py::test_v0157_12_recovery_profile_requires_host_root_proof"
+  ],
+  "round3_hardening_regressions": [
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_01_direct_bridge_native_invoke_cannot_bypass_retry_cutoff",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_02_dispatch_blocks_request_created_before_divergence",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_03_explicit_reconciliation_terminally_fences_unreconstructable_divergence",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_04_assessment_bound_to_canonical_step_and_stale_after_direct_advance",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_05_issue_rejects_malformed_target_before_persistence",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_06_consequential_records_include_trusted_clock_time",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_07_reconciliation_can_close_consistent_prepared_intent",
+    "tests/test_r22_phase17_v0158_round3_hardening.py::test_v0158_08_old_assessment_and_request_stale_after_successful_new_canonical_step"
+  ],
+  "round4_hardening_regressions": [
+    "tests/test_r22_phase18_v0159_round4_hardening.py::test_v0159_01_pre_advance_exception_abandons_intent_and_fresh_checkpoint_succeeds",
+    "tests/test_r22_phase18_v0159_round4_hardening.py::test_v0159_02_threaded_snapshot_conflict_is_abandoned_not_terminally_fenced",
+    "tests/test_r22_phase18_v0159_round4_hardening.py::test_v0159_03_true_post_advance_persist_failure_still_terminally_fences",
+    "tests/test_r22_phase18_v0159_round4_hardening.py::test_v0159_04_reconciliation_closes_unchanged_step_regardless_prior_status",
+    "tests/test_r22_phase18_v0159_round4_hardening.py::test_v0159_05_direct_runtime_consumption_blocks_late_retry_contract"
+  ],
+  "round5_hardening_regressions": [
+    "tests/test_r22_phase19_v0160_round5_hardening.py::test_v0160_01_late_reconcile_after_abandon_then_success_is_not_required",
+    "tests/test_r22_phase19_v0160_round5_hardening.py::test_v0160_02_threaded_conflict_then_success_late_reconcile_is_not_required",
+    "tests/test_r22_phase19_v0160_round5_hardening.py::test_v0160_03_raise_after_runtime_advance_marks_indeterminate_and_fences",
+    "tests/test_r22_phase19_v0160_round5_hardening.py::test_v0160_04_reopened_store_fails_closed_when_canonical_status_unavailable",
+    "tests/test_r22_phase19_v0160_round5_hardening.py::test_v0160_05_two_runtime_bridge_bindings_are_per_execution_and_retry_fails_closed"
+  ],
+  "round6_hardening_regressions": [
+    "tests/test_r22_phase20_v0161_round6_hardening.py::test_v0161_01_true_divergence_never_superseded_by_caller_timestamp",
+    "tests/test_r22_phase20_v0161_round6_hardening.py::test_v0161_02_empty_event_id_is_prevalidated_without_indeterminate_state",
+    "tests/test_r22_phase20_v0161_round6_hardening.py::test_v0161_03_public_bridge_rebinding_cannot_forge_retry_authority",
+    "tests/test_r22_phase20_v0161_round6_hardening.py::test_v0161_04_abandoned_close_records_reconciliation_and_audit",
+    "tests/test_r22_phase20_v0161_round6_hardening.py::test_v0161_05_later_persisted_assessment_supersedes_only_nondivergent_prepared_intent"
+  ],
+  "status": "round-six hostile-review hardening; independent retest required before freeze",
+  "version": "0.161"
+}

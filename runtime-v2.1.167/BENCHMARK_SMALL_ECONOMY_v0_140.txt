@@ -1,0 +1,9 @@
+attainable objectives= ('o_output',) graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= None
+conflicting objectives= ('o_output', 'o_work') graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= None
+objective_vs_viability objectives= ('o_anycost',) graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= None
+impossible objectives= ('o_teleport',) graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= None
+capability_development objectives= ('o_skill',) graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= None
+lifecycle objectives= () graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= Graph/Seed gov_current= None
+unauthorized_evidence objectives= ('o_output',) graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= False
+no_objective objectives= () graph= ('t_maintain', 't_expand', 't_train') excluded= ('t_teleport',) candidates= ('maintain', 'expand', 'train') reentry= None gov_current= None
+PASS: V2.1 Small Economy objective perturbation benchmark
