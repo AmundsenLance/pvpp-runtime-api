@@ -1,0 +1,12 @@
+$ PYTHONPATH="$R:." python3 b2_cycle.py
+integrated_cycle_selected_not_executed Sigma graph:restore_battery
+$ PYTHONPATH="$R:." python3 b3_lineage.py
+observation: state-0:next {'battery_units': 8.0} state-0:next ('battery_recovery',)
+native: succeeded consumed completed {'battery_units': 8.0}
+$ PYTHONPATH="$R:." python3 b5_reentry.py
+True reentry_pass_completed ('Sigma',) graph:restore_battery graph:restore_battery
+$ PYTHONPATH="$R:." python3 b7_supervise.py
+interrupted: reauthorization_required True invalidated
+  stop: dock_stop completed verified
+  effect: no_material_effect_evidenced False True
+completed: completed completed completed_effect state-0:next

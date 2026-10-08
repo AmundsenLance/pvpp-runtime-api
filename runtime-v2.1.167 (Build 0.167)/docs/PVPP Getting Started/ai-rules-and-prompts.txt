@@ -1,0 +1,95 @@
+PV-PP Getting Started, Edition 2.1 (Runtime v2.1.167): Listings 8.1 to 8.4
+Exact copies of the listings printed in Chapter 8, supplied only for pasting into an assistant.
+
+==============================================================================
+Listing 8.1 — Rules for AI-assisted PV-PP development
+==============================================================================
+RULES FOR THIS WORK (PV-PP runtime v2.1.167)
+
+1. The runtime is frozen. Never edit, patch, or monkeypatch anything in runtime-v2.1.167 or
+   pvpp_runtime, and never use a name that begins with an underscore. My code lives in its own
+   folder.
+2. Use entries labeled PUBLIC / SUPPORTED in Appendix A of the attached Programmer's Reference.
+   Use a PUBLIC / ADVANCED entry only when you say why. Never use a LEGACY / COMPATIBILITY
+   entry: assess, decide, evaluate_policy_space, evaluate_policy_sets,
+   evaluate_recovery_policy_space, evaluate_constraints, evaluate_framed_policy_space,
+   evaluate_proposal, validate_domain_framing, build_execution_license, record_execution,
+   record_layer1_execution_commit, register_domain_relation, register_dependency_requirement,
+   ExecutionBindingRegistry.invoke, ExecutionBindingRegistry.build_layer1_handoff, or the world
+   adapter's project_policy_record method.
+3. Do not copy patterns from the runtime's tiny_* examples. They exist for the legacy
+   compatibility surface and its tests, kept by design, not as models for new code.
+4. Supply projections through a PolicyProjectionService passed as projection_service=. Each
+   record echoes the request's state_id, state time, candidate_mode, projection_horizon, and
+   projection_input_trace, names a model_version, and marks horizons at the limit as
+   right-censored.
+5. Form perception with perceived_decision_state_from_actual; perceive returns its argument
+   unchanged.
+6. Host duties the runtime does not check: execute each decision at most once; keep episode ids
+   unique and advance only the latest episode; treat the first terminal result as final; after
+   re-entry at Pi Completeness or earlier, never license a decision whose joint-recovery result
+   is runtime-verified infeasible; change state only through the Layer-1 transition service;
+   checkpoint every execution a committed fact change affects; act on enforcement outcomes, not
+   on control requests.
+7. For every runtime call you use, cite the Reference section that documents it. If the
+   Reference does not answer a question, say so. Do not guess, and do not rely on what you
+   remember of earlier runtime versions.
+8. Write tests with the code: at least one for each decision the code relies on.
+9. For actions supervised while they run (pvpp_runtime.supervision): use its services, never the
+   store's tables or private helpers; treat a monitor report as evidence, never as a decision;
+   never say the runtime stops a process: it records a governed stop request that my controller
+   carries out; and do not put work that may need to be stopped inside invoke_registered_native.
+
+==============================================================================
+Listing 8.2 — Prompt 1: model my situation
+==============================================================================
+PROMPT 1: MODEL MY SITUATION
+
+Attach: the Programmer's Guide. Paste: the rules above.
+
+I want to model the situation below with the PV-PP framework. Interview me, one question at a
+   time, until you can fill in a model definition packet with these parts: what must be
+   preserved; the domains, each with what it measures and the level at which it fails; the
+   actions, including "steady" (what happens if nothing new is done) and how each action changes
+   each domain per period; the recovery routes; the hard rules; the options (graph
+   transformations) available from the current state, each with its family; and the horizon over
+   which options should be compared.
+Use the Guide's Chapter 3 prompt (Guide A.3) as your checklist. Mark every number I have not
+   given you as an assumption, and list the assumptions at the end. Do not write code yet.
+My situation: <describe it in a few plain sentences>
+
+==============================================================================
+Listing 8.3 — Prompt 2: write the host code
+==============================================================================
+PROMPT 2: WRITE THE HOST CODE
+
+Attach: the Programmer's Reference; the Getting Started tutorial files (step1 to step6,
+   test_battery.py, and test_supervise.py); the packet from Prompt 1. Paste: the rules above.
+
+Write host code for the attached model, following the structure of the tutorial: a registry, a
+   world adapter, a projection service, a decision step, and an acting step with a Layer-1
+   transition service, and, if any action runs over time while facts can change, a
+   supervision step in the shape of step 6; each in its own file that runs on its own and prints what it built. Then
+   write a test file with one test for each decision the model is meant to make, and one showing
+   that the Sigma order only breaks ties.
+Before the code, give a table of every runtime call you use, its label from Reference Appendix
+   A, and the Reference section that documents it. After the code, list the scenarios you tested
+   and the outcome you expect in each, so I can check them against my own expectations before I
+   run anything.
+
+==============================================================================
+Listing 8.4 — Prompt 3: review this host code
+==============================================================================
+PROMPT 3: REVIEW THIS HOST CODE
+
+Attach: the Programmer's Reference; my host code and tests. Paste: the rules above.
+
+Review my host code against the Programmer's Reference as a hostile reviewer. For each finding
+   give the file and line, the rule or Reference section it breaks, why it matters, and a
+   corrected version. Check in particular: any legacy or internal entry; any edit to the
+   runtime; projections that do not echo the request or that report a domain as safe beyond what
+   the model supports; perception that invents facts; any decision executed more than once or
+   episode advanced out of order; state changed outside the Layer-1 service; decisions the
+   tests do not cover; and, if the code supervises actions, any affected execution never
+   checkpointed, any stop request treated as a completed stop, and any stoppable work run
+   inside invoke_registered_native. Do not rewrite code that has no finding.

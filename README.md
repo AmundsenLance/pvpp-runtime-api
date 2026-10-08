@@ -2,65 +2,63 @@
 
 Reference runtime implementations and programmer documentation for applications built with the **Productive Value–Productive Power (PV-PP) Framework**.
 
-The current frozen runtime is **Runtime V2.1 v0.141**. Earlier frozen generations remain in this repository for reproducibility and comparison.
+The current frozen runtime is **Runtime V2.1 build v0.167**, located in [`runtime-v2.1.167/`](runtime-v2.1.167/). Earlier frozen builds remain in this repository for provenance, reproducibility, and comparison.
 
-## Start Here — Runtime V2.1 Documentation
+## Start Here — Current Runtime Documentation
 
-The former nine-document runtime documentation set has been replaced by a three-part programmer documentation set under `runtime-v2.1/docs/`.
+The current programmer documentation is organized as three complementary books under [`runtime-v2.1.167/docs/`](runtime-v2.1.167/docs/).
 
 | | Document | Use it for |
 |---|---|---|
-| **1** | **PV-PP Runtime: Getting Started** | The shortest path into PV-PP runtime programming: install and verify v0.141, understand the host/runtime boundary, and build a small runnable application. |
-| **2** | **PV-PP Framework & Programming Guide** | Learn the framework and application-design method in depth, including modeling, the canonical decision cycle, execution, testing, and worked examples. |
-| **3** | **PV-PP Framework & Runtime Programming Reference** | Exact technical reference for frozen runtime v0.141: public API, stage contracts, host protocols, execution, re-entry, errors, limitations, and compatibility. |
+| **1** | **PVPP Getting Started** | The shortest path into PV-PP runtime programming: verify the frozen build, understand the framework/runtime/host boundary, and build a small runnable application. |
+| **2** | **PVPP Programmer's Guide** | Learn the framework and application-design method in depth, including modeling, the canonical decision cycle, execution, supervision, testing, AI-assisted development, and worked examples. |
+| **3** | **PVPP Programmer's Reference** | Exact technical reference for frozen build v0.167: public and supported APIs, stage contracts, host protocols, execution, supervision, re-entry, errors, limitations, and compatibility. |
 
-### 1. PV-PP Runtime: Getting Started
+### 1. PVPP Getting Started
 
-- [PDF](runtime-v2.1/docs/PVPP%20Getting%20Started/PVPP_Framework_Getting_Started_Ed2.1_rc1.pdf)
-- [Word](runtime-v2.1/docs/PVPP%20Getting%20Started/PVPP_Framework_Getting_Started_Ed2.1_rc1.docx)
-- Supporting material is in the same directory under `ai-rules-and-prompts/` and `battery/`.
+- [Browse the Getting Started directory](runtime-v2.1.167/docs/PVPP%20Getting%20Started/)
 
-### 2. PV-PP Framework & Programming Guide
+### 2. PVPP Programmer's Guide
 
-- [PDF](runtime-v2.1/docs/PVPP%20Programmer%27s%20Guide/PVPP_Getting_Started_Ed2.1_rc2.pdf)
-- [Word](runtime-v2.1/docs/PVPP%20Programmer%27s%20Guide/PVPP_Getting_Started_Ed2.1_rc2.docx)
-- Companion programs are under `programs/`.
+- [Browse the Programmer's Guide directory](runtime-v2.1.167/docs/PVPP%20Programmer%27s%20Guide/)
 
-> **Repository filename note:** the Guide files currently use the filename `PVPP_Getting_Started_Ed2.1_rc2.*`; the directory name identifies them as the Programmer's Guide.
+### 3. PVPP Programmer's Reference
 
-### 3. PV-PP Framework & Runtime Programming Reference
-
-- [PDF](runtime-v2.1/docs/PVPP%20Programmer%27s%20Reference/PVPP_Programmers_Reference_Ed2.1_rc1.pdf)
-- [Word](runtime-v2.1/docs/PVPP%20Programmer%27s%20Reference/PVPP_Programmers_Reference_Ed2.1_rc1.docx)
-- Reference programs are under `programmers-reference/`.
+- [Browse the Programmer's Reference directory](runtime-v2.1.167/docs/PVPP%20Programmer%27s%20Reference/)
 
 **Recommended first path:** Getting Started → Guide as needed → Reference when exact runtime behavior or API contracts matter.
 
-## Runtime Generations
+> **Documentation links:** The directory links above are intentionally stable while the three books complete final editorial revision. Direct PDF and Word links can be added after the final filenames are frozen.
 
-| Runtime | Status | Regression baseline | Directory |
-|---|---|---:|---|
-| **V1 v0.70** | Historical frozen runtime | 496 / 496 | [`runtime-v1/`](runtime-v1/) |
-| **V2 v0.131** | Preserved prior successor | 967 / 967 | [`runtime-v2/`](runtime-v2/) |
-| **V2.1 v0.141** | **Current frozen runtime** | **1093 / 1093** | [`runtime-v2.1/`](runtime-v2.1/) |
+## Runtime Lineage
 
-New Version 2.1 applications should normally target **Runtime V2.1 v0.141**.
+| Runtime directory | Frozen build | Status | Regression baseline |
+|---|---:|---|---:|
+| [`runtime-v1/`](runtime-v1/) | v0.70 | Historical Runtime V1 interface freeze | 496 / 496 |
+| [`runtime-v2/`](runtime-v2/) | v0.131 | Historical Runtime V2 frozen baseline | 967 / 967 |
+| [`runtime-v2.1/`](runtime-v2.1/) | v0.141 | Preserved prior Runtime V2.1 build | 1093 / 1093 |
+| [`runtime-v2.1.167/`](runtime-v2.1.167/) | **v0.167** | **Current frozen Runtime V2.1 build** | **1320 / 1320** |
+
+New Version 2.1 applications should normally target **Runtime V2.1 build v0.167** in `runtime-v2.1.167/`.
 
 ## Framework and Runtime Authority
 
 Framework meaning is governed by the authoritative **PV-PP Framework Version 2.1** source set. Runtime source and tests govern implemented runtime behavior. The runtime does not redefine the framework.
 
-The frozen v0.141 runtime is synchronous. It does **not** provide asynchronous sensing, external instrumentation hooks, autonomous in-flight environment-change detection, or guaranteed mid-flight cancellation. Applications may provide instrumentation and updated state/evidence around the runtime, but those capabilities must not be attributed to v0.141 itself.
+Build v0.167 adds **host-driven in-flight supervision** while preserving a synchronous canonical decision core. Host instrumentation supplies observations and host code invokes supervisory checkpoints. The runtime evaluates the admitted evidence and governs continuation; external controllers remain responsible for carrying out stop, pause, rollback, or other enforcement actions in the external world.
 
-The host/application remains responsible for authoritative actual state, domain/world mechanics, domain-specific measurements and projections, external persistence and instrumentation, environmental realization, and authoritative Layer-1 state transition.
+The runtime does **not** autonomously sense the environment, schedule its own checkpoints, or by itself guarantee that an external process has stopped. Applications remain responsible for authoritative actual state, domain/world mechanics, domain-specific measurements and projections, external persistence and instrumentation, environmental realization, enforcement, and authoritative Layer-1 state transition.
+
+PV-PP runtime governance does not replace operating-system security, IAM, network enforcement, sandboxing, or other conventional controls required by the deployment environment.
 
 ## Repository Organization
 
 ```text
 PV-PP-Runtime-API/
-├── runtime-v1/                 # frozen v0.70 historical generation
-├── runtime-v2/                 # frozen v0.131 prior successor
-└── runtime-v2.1/               # current frozen v0.141 Version 2.1 successor
+├── runtime-v1/                         # historical frozen Runtime V1, build v0.70
+├── runtime-v2/                         # historical frozen Runtime V2, build v0.131
+├── runtime-v2.1/                       # preserved prior Runtime V2.1, build v0.141
+└── runtime-v2.1.167/                   # current frozen Runtime V2.1, build v0.167
     ├── benchmarks/
     ├── docs/
     │   ├── PVPP Getting Started/
@@ -69,12 +67,16 @@ PV-PP-Runtime-API/
     ├── examples/
     ├── pvpp_runtime/
     ├── tests/
-    └── V0141_FILE_HASHES.sha256
+    └── V0167_FILE_HASHES.sha256
 ```
 
-## Verify Runtime V2.1 v0.141
+The current runtime directory also contains lineage, conformance, hardening, release-note, and hash/provenance records used to identify and reproduce the frozen build.
 
-From `runtime-v2.1/`, verify the frozen source set with `V0141_FILE_HASHES.sha256`, then run the frozen regression suite. The expected regression result is **1093 passed**.
+## Verify Current Runtime v0.167
+
+From `runtime-v2.1.167/`, verify the frozen source set with `V0167_FILE_HASHES.sha256`, then run the frozen regression suite. The expected full regression result is **1320 passed**.
+
+Use the build's own README, release notes, conformance record, and provenance files for the exact verification procedure and frozen-source identity.
 
 ## About PV-PP
 
@@ -84,4 +86,4 @@ This repository concerns the Runtime API and its programmer documentation. The b
 
 ## License
 
-Runtime source is licensed under the repository license. Documentation remains subject to the notices contained in the individual documents.
+Runtime source in this repository is licensed under the **Apache License 2.0** unless a file or component states otherwise. Documentation remains subject to the notices contained in the individual documents. See [`LICENSE`](LICENSE).
